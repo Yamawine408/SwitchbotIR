@@ -38,18 +38,18 @@
 SWITCHBOT_API=https://api.switch-bot.com/v1.0
 function usage() {
     echo 'Usage:'
-    echo '    ' `basename $0` 'API-KEY [ DEV-ID COMMAND ]'
-    echo '    ' `basename $0` '-s SECRETS.sh [ COMMAND ]'
+    echo '    ' `basename $0` ' API-KEY [ DEV-ID COMMAND ]'
+    echo '    ' `basename $0` ' -s SECRETS.sh [ COMMAND ]'
     exit 1
 }
 
+CWD=`dirname $0`
 CMD=
 if [ $# -eq 0 ]; then
     usage
 else
     if [ $1 == '-s' ]; then
 	if [ $# > 1 ]; then
-	    CWD=`dirname $0`
 	    . $CWD/$2
 	    if [ x$APIKEY == x ]; then
 		echo $2 does not have APIKEY 
@@ -80,9 +80,9 @@ else
     fi
 fi
 
-echo APIKEY=$APIKEY
-echo DEVID=$DEVID
-echo CMD=$CMD
+echo APIKEY=$APIKEY >> $CWD/IR.log
+echo DEVID=$DEVID >> $CWD/IR.log
+echo CMD=$CMD >> $CWD/IR.log
 
 if [ x$CMD != x ]; then
     RET=`curl --request POST "$SWITCHBOT_API/devices/$DEVID/commands" \
@@ -97,6 +97,4 @@ else
   --header "Authorization: $APIKEY" \
   --header "Content-Type: application/json; charset=utf8"
 fi
-
-
-
+exit 0
