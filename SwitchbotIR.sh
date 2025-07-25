@@ -37,14 +37,14 @@
 
 SWITCHBOT_API=https://api.switch-bot.com/v1.0
 function usage() {
-    echo `basename $0` 'API-KEY [ DEV-ID COMMAND ]'
-    echo `basename $0` '-s SECRETS.sh [ COMMAND ]'
+    echo 'Usage:'
+    echo '    ' `basename $0` 'API-KEY [ DEV-ID COMMAND ]'
+    echo '    ' `basename $0` '-s SECRETS.sh [ COMMAND ]'
     exit 1
 }
 
 CMD=
-
-if [ $# -eq 1 ]; then
+if [ $# -eq 0 ]; then
     usage
 else
     if [ $1 == '-s' ]; then
@@ -63,9 +63,13 @@ else
 	else
 	    usage
 	fi
-    elif [ $1 == '-h' | $1 == '--help' ]; then
+    elif [ $1 == '-h' ]; then
 	usage
-    elif [ $1 == '-u' | $1 == '--usage' ]; then
+    elif [ $1 == '-u' ]; then
+	usage
+    elif [ $1 == '-help' ]; then
+	usage
+    elif [ $1 == '-usage' ]; then
 	usage
     else
 	APIKEY=$1
