@@ -29,3 +29,6 @@ and the secret.yaml file.
 switchbot_api: "a*************7"
 switchbot_device: "0****************2"
 ```
+
+## Switchbot Commands
+You can find the list of commands from [SwitchBotAPI](https://github.com/OpenWonderLabs/SwitchBotAPI). 
