@@ -1,4 +1,6 @@
 #!/bin/sh
 
-export API_KEY=<<Switchbot API key>>
+export APIKEY=
+
+export DEVID=
 
